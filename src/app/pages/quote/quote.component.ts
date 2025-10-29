@@ -161,26 +161,8 @@ interface QuoteFormData {
             </div>
             
             <form [formGroup]="needsForm" class="space-y-6">
-              <div>
-                <label class="block text-sm font-semibold text-assurantis-grayDark mb-4">
-                  Type(s) d'assurance souhaité(s) <span class="text-assurantis-red">*</span>
-                </label>
-                <div class="grid md:grid-cols-2 gap-4">
-                  <label *ngFor="let insurance of insuranceTypes" 
-                         class="card cursor-pointer hover:border-assurantis-red transition-all"
-                         [class.border-assurantis-red]="needsForm.get('insuranceTypes')?.value?.includes(insurance.value)"
-                         [class.bg-assurantis-red/5]="needsForm.get('insuranceTypes')?.value?.includes(insurance.value)">
-                    <input type="checkbox" 
-                           [value]="insurance.value"
-                           (change)="onInsuranceTypeChange($event)"
-                           class="mr-3">
-                    <span class="font-medium">{{ insurance.label }}</span>
-                  </label>
-                </div>
-                <p *ngIf="isFieldInvalid('needs', 'insuranceTypes')" class="text-red-500 text-sm mt-2">
-                  Sélectionnez au moins un type d'assurance
-                </p>
-              </div>
+             
+
 
               <div>
                 <label class="block text-sm font-semibold text-assurantis-grayDark mb-2">
