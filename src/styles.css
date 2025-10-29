@@ -1,1 +1,115 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Google Fonts - Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply font-sans text-assurantis-grayDark antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-assurantis-grayDark;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-assurantis-red text-white px-6 py-3 rounded-xl font-semibold 
+           hover:bg-assurantis-redDark transition-all duration-300 
+           focus:outline-none focus:ring-4 focus:ring-assurantis-redLight/30
+           active:scale-95 shadow-soft hover:shadow-red;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-assurantis-red border-2 border-assurantis-red 
+           px-6 py-3 rounded-xl font-semibold 
+           hover:bg-assurantis-red hover:text-white transition-all duration-300
+           focus:outline-none focus:ring-4 focus:ring-assurantis-redLight/30
+           active:scale-95 shadow-soft;
+  }
+
+  .btn-outline {
+    @apply bg-transparent text-assurantis-grayDark border-2 border-assurantis-grayLight
+           px-6 py-3 rounded-xl font-semibold 
+           hover:bg-assurantis-grayLight transition-all duration-300
+           focus:outline-none focus:ring-4 focus:ring-assurantis-gray/20
+           active:scale-95;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-soft p-6 
+           hover:shadow-soft-lg transition-all duration-300
+           border border-assurantis-grayLight/30;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 border-2 border-assurantis-grayLight rounded-xl
+           focus:outline-none focus:border-assurantis-red focus:ring-4 
+           focus:ring-assurantis-redLight/20 transition-all duration-200
+           placeholder:text-assurantis-gray;
+  }
+
+  .input-field.error {
+    @apply border-red-500 focus:border-red-500 focus:ring-red-500/20;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+/* Print styles pour le PDF */
+@media print {
+  @page {
+    margin: 2cm;
+  }
+
+  body {
+    @apply text-black bg-white;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-break-before {
+    page-break-before: always;
+  }
+
+  .print-break-after {
+    page-break-after: always;
+  }
+}
+
+/* Focus visible pour l'accessibilité */
+*:focus-visible {
+  @apply outline-none ring-4 ring-assurantis-redLight/30 ring-offset-2;
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-assurantis-grayLight/30;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-assurantis-gray rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-assurantis-grayDark;
+}
