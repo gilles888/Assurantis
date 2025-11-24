@@ -19,7 +19,8 @@
     "preview": "ng serve --configuration production",
     "deploy:ghpages": "ng build --configuration production --base-href \"/assurantis-app/\" && npx angular-cli-ghpages --dir=dist/assurantis-app/browser",
     "deploy:netlify": "ng build --configuration production && netlify deploy --prod --dir=dist/assurantis-app/browser",
-    "deploy:vercel": "ng build --configuration production && vercel --prod"
+    "deploy:vercel": "ng build --configuration production && vercel --prod",
+    "openapi-gen": "curl -o openapi.json http://localhost:8080/v3/api-docs && ng-openapi-gen --config ng-openapi-gen.json"
   },
   "private": true,
   "dependencies": {
@@ -48,6 +49,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "ng-openapi-gen": "^1.0.5",
     "postcss": "^8.5.6",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.18",

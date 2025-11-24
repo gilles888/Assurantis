@@ -162,7 +162,23 @@ interface QuoteFormData {
             
             <form [formGroup]="needsForm" class="space-y-6">
              
-
+<div>
+  <label class="block text-sm font-semibold text-assurantis-grayDark mb-2">
+    Type(s) d'assurance souhaité(s) <span class="text-assurantis-red">*</span>
+  </label>
+  <div class="flex flex-wrap gap-4">
+    <label *ngFor="let type of insuranceTypes" class="flex items-center space-x-2">
+      <input type="checkbox"
+             [value]="type.value"
+             (change)="onInsuranceTypeChange($event)"
+             [checked]="needsForm.get('insuranceTypes')?.value.includes(type.value)">
+      <span>{{ type.label }}</span>
+    </label>
+  </div>
+  <p *ngIf="isFieldInvalid('needs', 'insuranceTypes')" class="text-red-500 text-sm mt-1">
+    Veuillez sélectionner au moins un type d'assurance
+  </p>
+</div>
 
               <div>
                 <label class="block text-sm font-semibold text-assurantis-grayDark mb-2">
@@ -312,6 +328,8 @@ interface QuoteFormData {
                     class="btn-primary flex-1">
               Retour à l'accueil
             </button>
+
+
           </div>
         </div>
       </div>
@@ -475,9 +493,10 @@ export class QuoteComponent {
 
     // Simuler un envoi (pas de backend)
     await new Promise(resolve => setTimeout(resolve, 1500));
+    //Call to Email service or backend would go here
 
     // Générer une référence unique
-    this.quoteReference = 'DEV-' + Date.now().toString().slice(-8);
+    this.quoteReference = 'REF-' + Date.now().toString().slice(-8);
 
     this.isSubmitting = false;
     this.showSuccessModal = true;
