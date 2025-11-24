@@ -526,6 +526,7 @@ export class QuoteComponent {
         error: () => {
           this.isSubmitting = false;
           // Gère l'erreur ici (affiche un message, etc.)
+          alert('Une erreur est survenue lors de l\'envoi de votre demande. Veuillez réessayer plus tard.');
         }
       });
    
