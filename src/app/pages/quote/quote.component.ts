@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { LucideAngularModule, User, Shield, FileText, CheckCircle, ArrowLeft, ArrowRight } from 'lucide-angular';
+import { MailRequestDto } from '../../@core/api/models';
+import { HttpClient } from '@angular/common/http';
+import { sendMail } from '../../@core/api/functions';
 
 interface QuoteFormData {
   profile: any;
@@ -392,7 +395,7 @@ export class QuoteComponent {
     { value: 'pro', label: 'Assurance Professionnelle' }
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.profileForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -491,15 +494,41 @@ export class QuoteComponent {
       details: this.detailsForm.value
     };
 
+
+     const mailRequest: MailRequestDto = {
+    appCode: 'ASSURANTIS',
+    email: this.formData.profile.email,
+    mailType: 'QUOTE_REQUEST',
+    name: `${this.formData.profile.firstName} ${this.formData.profile.lastName}`,
+    phone: this.formData.profile.phone,
+    message: 'Demande de devis via le formulaire',
+    additionalData: {
+      quote: this.formData // <-- Ajout de l'objet quote ici
+    }
+  };
     // Simuler un envoi (pas de backend)
-    await new Promise(resolve => setTimeout(resolve, 1500));
+   // await new Promise(resolve => setTimeout(resolve, 1500));
     //Call to Email service or backend would go here
 
     // Générer une référence unique
-    this.quoteReference = 'REF-' + Date.now().toString().slice(-8);
+    //this.quoteReference = 'REF-' + Date.now().toString().slice(-8);
 
-    this.isSubmitting = false;
-    this.showSuccessModal = true;
+    //this.isSubmitting = false;
+   // this.showSuccessModal = true;
+
+      sendMail(this.http, 'http://localhost:8080/api', { body: mailRequest })
+      .subscribe({
+        next: () => {
+          this.quoteReference = 'REF-' + Date.now().toString().slice(-8);
+          this.isSubmitting = false;
+          this.showSuccessModal = true;
+        },
+        error: () => {
+          this.isSubmitting = false;
+          // Gère l'erreur ici (affiche un message, etc.)
+        }
+      });
+   
   }
 
   downloadRecap() {
