@@ -1,5 +1,5 @@
 {
   "input": "openapi.json",
-  "output": "src/app/@core/api",
+  "output": "src/app/@core/",
   "enumStyle": "enum"
 }

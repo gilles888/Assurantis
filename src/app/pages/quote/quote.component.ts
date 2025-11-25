@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { LucideAngularModule, User, Shield, FileText, CheckCircle, ArrowLeft, ArrowRight } from 'lucide-angular';
 import { MailRequestDto } from '../../@core/api/models';
-import { HttpClient } from '@angular/common/http';
 import { sendMail } from '../../@core/api/functions';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 interface QuoteFormData {
   profile: any;
@@ -15,7 +15,7 @@ interface QuoteFormData {
 @Component({
   selector: 'app-quote',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, LucideAngularModule],
+  imports: [CommonModule, ReactiveFormsModule, LucideAngularModule,HttpClientModule],
   template: `
     <section class="bg-assurantis-grayLighter min-h-screen py-12">
       <div class="container-custom max-w-4xl">
@@ -516,7 +516,7 @@ export class QuoteComponent {
     //this.isSubmitting = false;
    // this.showSuccessModal = true;
 
-      sendMail(this.http, 'http://localhost:8080/api', { body: mailRequest })
+      sendMail(this.http, 'http://localhost:8080', { body: mailRequest })
       .subscribe({
         next: () => {
           this.quoteReference = 'REF-' + Date.now().toString().slice(-8);
