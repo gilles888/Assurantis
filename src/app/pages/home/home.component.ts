@@ -256,7 +256,7 @@ import { AppServiceCardComponent } from '../../components/service-card/service-c
           <a href="tel:+32123456789" 
              class="text-2xl font-bold hover:underline inline-flex items-center space-x-2">
             <lucide-icon [img]="PhoneIcon" [size]="28"></lucide-icon>
-            <span>+32 1 234 56 789</span>
+            <span>+32 477 79 03 83</span>
           </a>
         </div>
       </div>

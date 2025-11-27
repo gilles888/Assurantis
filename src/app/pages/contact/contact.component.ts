@@ -34,8 +34,8 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
                 <div>
                   <h3 class="font-semibold text-assurantis-grayDark mb-1">Adresse</h3>
                   <p class="text-assurantis-gray">
-                    Rue de l'Exemple 123<br>
-                    1000 Bruxelles<br>
+                    Avenue Louise 164<br>
+                    1050 Ixelles<br>
                     Belgique
                   </p>
                 </div>
@@ -48,8 +48,8 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
                 </div>
                 <div>
                   <h3 class="font-semibold text-assurantis-grayDark mb-1">Téléphone</h3>
-                  <a href="tel:+32123456789" class="text-assurantis-gray hover:text-assurantis-red transition-colors">
-                    +32 1 234 56 789
+                  <a href="tel:+32477790383" class="text-assurantis-gray hover:text-assurantis-red transition-colors">
+                    +32 477 79 03 83
                   </a>
                   <p class="text-sm text-assurantis-gray mt-1">Du lundi au vendredi, 9h-18h</p>
                 </div>
@@ -62,8 +62,8 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
                 </div>
                 <div>
                   <h3 class="font-semibold text-assurantis-grayDark mb-1">Email</h3>
-                  <a href="mailto:contact@assurantis.be" class="text-assurantis-gray hover:text-assurantis-red transition-colors">
-                    contact&#64;assurantis.be
+                  <a href="mailto:info@assurantis.net" class="text-assurantis-gray hover:text-assurantis-red transition-colors">
+                    info&#64;assurantis.net
                   </a>
                   <p class="text-sm text-assurantis-gray mt-1">Réponse sous 24h</p>
                 </div>
@@ -78,7 +78,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
                   <h3 class="font-semibold text-assurantis-grayDark mb-2">Horaires d'ouverture</h3>
                   <div class="space-y-1 text-sm text-assurantis-gray">
                     <p><span class="font-medium">Lundi - Vendredi:</span> 9h00 - 18h00</p>
-                    <p><span class="font-medium">Samedi:</span> 9h00 - 13h00</p>
+                    <p><span class="font-medium">Samedi:</span> Fermé</p>
                     <p><span class="font-medium">Dimanche:</span> Fermé</p>
                   </div>
                 </div>
@@ -205,7 +205,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
             <p class="text-sm text-assurantis-gray">Réponse immédiate</p>
           </a>
 
-          <a href="mailto:contact@assurantis.be" 
+          <a href="mailto:info@assurantis.net" 
              class="card text-center hover:border-assurantis-red transition-all group">
             <div class="w-16 h-16 bg-assurantis-red/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-assurantis-red transition-colors">
               <lucide-icon [img]="MailIcon" [size]="32" class="text-assurantis-red group-hover:text-white transition-colors"></lucide-icon>

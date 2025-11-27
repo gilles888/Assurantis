@@ -129,10 +129,10 @@ import { LucideAngularModule, Target, Award, Users, Heart, Shield, TrendingUp } 
           </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          <!-- Team Member 1 -->
+       <!-- <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+           Team Member 1 
           <div class="card text-center">
-            <div class="w-32 h-32 bg-assurantis-grayLight rounded-full mx-auto mb-6 overflow-hidden">
+           <div class="w-32 h-32 bg-assurantis-grayLight rounded-full mx-auto mb-6 overflow-hidden">
               <div class="w-full h-full flex items-center justify-center text-4xl font-bold text-assurantis-red">
                 JD
               </div>
@@ -145,22 +145,22 @@ import { LucideAngularModule, Target, Award, Users, Heart, Shield, TrendingUp } 
             </p>
           </div>
 
-          <!-- Team Member 2 -->
+          <!-- Team Member 2 
           <div class="card text-center">
             <div class="w-32 h-32 bg-assurantis-grayLight rounded-full mx-auto mb-6 overflow-hidden">
               <div class="w-full h-full flex items-center justify-center text-4xl font-bold text-assurantis-red">
                 ML
               </div>
             </div>
-            <h3 class="text-h4 mb-2">Marie Lambert</h3>
-            <p class="text-assurantis-red font-medium mb-3">Courtière Senior</p>
+            <h3 class="text-h4 mb-2">Nadia Baakil</h3>
+            <p class="text-assurantis-red font-medium mb-3">Directeur & Fondateur</p>
             <p class="text-sm text-assurantis-gray leading-relaxed">
-              Spécialiste en assurances vie et santé. 15 ans d'expérience dans l'accompagnement 
-              des particuliers.
+              25 ans d'expérience dans le courtage d'assurances. Passionné par la satisfaction client 
+              et l'excellence du service.
             </p>
           </div>
 
-          <!-- Team Member 3 -->
+          <!-- Team Member 3 
           <div class="card text-center">
             <div class="w-32 h-32 bg-assurantis-grayLight rounded-full mx-auto mb-6 overflow-hidden">
               <div class="w-full h-full flex items-center justify-center text-4xl font-bold text-assurantis-red">
@@ -174,7 +174,27 @@ import { LucideAngularModule, Target, Award, Users, Heart, Shield, TrendingUp } 
               indépendants depuis 12 ans.
             </p>
           </div>
+        </div>-->
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto justify-center">
+  <div class="col-span-1 md:col-start-2 flex justify-center">
+    <!-- Team Member 2 -->
+    <div class="card text-center">
+      <div class="w-32 h-32 bg-assurantis-grayLight rounded-full mx-auto mb-6 overflow-hidden">
+        <div class="w-full h-full flex items-center justify-center text-4xl font-bold text-assurantis-red">
+          ML
         </div>
+      </div>
+      <h3 class="text-h4 mb-2">Nadia Baakil</h3>
+      <p class="text-assurantis-red font-medium mb-3">Directrice & Fondatrice</p>
+      <p class="text-sm text-assurantis-gray leading-relaxed">
+        25 ans d'expérience dans le courtage d'assurances. Passionné par la satisfaction client 
+        et l'excellence du service.
+      </p>
+    </div>
+  </div>
+</div>
+      
+      
       </div>
     </section>
 
@@ -193,7 +213,7 @@ import { LucideAngularModule, Target, Award, Users, Heart, Shield, TrendingUp } 
                 <div>
                   <h3 class="font-semibold text-assurantis-grayDark mb-1">Courtier inscrit à la FSMA</h3>
                   <p class="text-sm text-assurantis-gray">
-                    Numéro d'agrément FSMA : XXXX-XXXX-XXXX
+                    Numéro d'agrément FSMA : 0633.962.702
                   </p>
                 </div>
               </div>

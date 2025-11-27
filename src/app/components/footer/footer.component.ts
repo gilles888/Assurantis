@@ -136,27 +136,26 @@ import { LucideAngularModule, MapPin, Phone, Mail, Facebook, Linkedin, Instagram
               <li class="flex items-start space-x-3">
                 <lucide-icon [img]="MapPinIcon" [size]="20" class="text-assurantis-red mt-0.5 flex-shrink-0"></lucide-icon>
                 <span class="text-assurantis-grayLight text-sm">
-                  Rue de l'Exemple 123<br>
-                  1000 Bruxelles, Belgique
+                  Avenue Louise, 164<br>
+                  1050 Ixelles, Belgique
                 </span>
               </li>
               <li class="flex items-start space-x-3">
                 <lucide-icon [img]="PhoneIcon" [size]="20" class="text-assurantis-red mt-0.5 flex-shrink-0"></lucide-icon>
-                <a href="tel:+32123456789" class="text-assurantis-grayLight hover:text-white transition-colors text-sm">
-                  +32 1 234 56 789
+                <a href="tel:+32477790383" class="text-assurantis-grayLight hover:text-white transition-colors text-sm">
+                  +32 477 79 03 83
                 </a>
               </li>
               <li class="flex items-start space-x-3">
                 <lucide-icon [img]="MailIcon" [size]="20" class="text-assurantis-red mt-0.5 flex-shrink-0"></lucide-icon>
-                <a href="mailto:contact@assurantis.be" class="text-assurantis-grayLight hover:text-white transition-colors text-sm">
-                  contact&#64;assurantis.be
+                <a href="mailto:info@assurantis.net" class="text-assurantis-grayLight hover:text-white transition-colors text-sm">
+                  info&#64;assurantis.net
                 </a>
               </li>
             </ul>
             <div class="mt-6 text-xs text-assurantis-grayLight">
               <p class="font-semibold">Horaires d'ouverture</p>
               <p class="mt-1">Lun - Ven: 9h00 - 18h00</p>
-              <p>Sam: 9h00 - 13h00</p>
             </div>
           </div>
         </div>

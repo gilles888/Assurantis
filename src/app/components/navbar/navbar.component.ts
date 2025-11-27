@@ -71,7 +71,7 @@ import { LucideAngularModule, Menu, X, Phone } from 'lucide-angular';
           class="flex items-center space-x-2 text-assurantis-grayDark hover:text-assurantis-red transition-colors duration-200"
         >
           <lucide-icon [img]="PhoneIcon" [size]="20"></lucide-icon>
-          <span class="font-medium">+32 1 234 56 789</span>
+          <span class="font-medium">+32 477  79 03 83</span>
         </a>
         <a routerLink="/devis" class="btn-primary">
           Demander un devis
@@ -136,7 +136,7 @@ import { LucideAngularModule, Menu, X, Phone } from 'lucide-angular';
           class="flex items-center space-x-2 px-4 py-3 text-assurantis-grayDark hover:text-assurantis-red"
         >
           <lucide-icon [img]="PhoneIcon" [size]="20"></lucide-icon>
-          <span class="font-medium">+32 1 234 56 789</span>
+          <span class="font-medium">+32 477  79 03 83</span>
         </a>
         <a routerLink="/devis" (click)="closeMobileMenu()" class="block btn-primary text-center">
           Demander un devis
