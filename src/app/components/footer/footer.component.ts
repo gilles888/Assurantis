@@ -14,15 +14,24 @@ import { LucideAngularModule, MapPin, Phone, Mail, Facebook, Linkedin, Instagram
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <!-- Brand Column -->
           <div class="space-y-6">
-            <div class="flex items-center space-x-3">
-              <div class="w-12 h-12 bg-assurantis-red rounded-xl flex items-center justify-center shadow-red">
-                <span class="text-white font-bold text-xl">A</span>
-              </div>
-              <div>
-                <div class="text-xl font-bold">ASSURANTIS</div>
-                <div class="text-sm text-assurantis-grayLight italic">your best partner</div>
-              </div>
-            </div>
+          <div class="flex items-center space-x-3">
+  <img
+    src="/logoRed.png"
+    alt="Logo Assurantis"
+    class="w-12 h-12 rounded-xl shadow-red"
+    loading="lazy"
+    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+  />
+  <div style="display:none;">
+    <div class="w-12 h-12 bg-assurantis-red rounded-xl flex items-center justify-center shadow-red">
+      <span class="text-white font-bold text-xl">A</span>
+    </div>
+  </div>
+  <div>
+    <div class="text-xl font-bold">ASSURANTIS</div>
+    <div class="text-sm text-assurantis-grayLight italic">your best partner</div>
+  </div>
+</div>
             <p class="text-assurantis-grayLight text-sm leading-relaxed">
               Votre courtier en assurances de confiance. Indépendance, proximité et réactivité 
               pour tous vos besoins en protection.
@@ -166,7 +175,7 @@ import { LucideAngularModule, MapPin, Phone, Mail, Facebook, Linkedin, Instagram
         <div class="container-custom py-6">
           <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p class="text-sm text-assurantis-grayLight">
-              &copy; {{ currentYear }} ASSURANTIS. Tous droits réservés. | FSMA n° XXXX
+              &copy; {{ currentYear }} ASSURANTIS. Tous droits réservés. | FSMA n° 0633.962.702
             </p>
             <div class="flex flex-wrap justify-center gap-6 text-sm">
               <a routerLink="/politique-confidentialite" 

@@ -181,7 +181,7 @@ import { LucideAngularModule, Target, Award, Users, Heart, Shield, TrendingUp } 
     <div class="card text-center">
       <div class="w-32 h-32 bg-assurantis-grayLight rounded-full mx-auto mb-6 overflow-hidden">
         <div class="w-full h-full flex items-center justify-center text-4xl font-bold text-assurantis-red">
-          ML
+          NB
         </div>
       </div>
       <h3 class="text-h4 mb-2">Nadia Baakil</h3>

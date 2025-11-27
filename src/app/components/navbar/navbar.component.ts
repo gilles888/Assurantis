@@ -18,18 +18,24 @@ import { LucideAngularModule, Menu, X, Phone } from 'lucide-angular';
   <div class="container-custom">
     <div class="flex items-center justify-between h-20">
       <!-- Logo -->
-      <a routerLink="/" class="flex items-center space-x-3 group">
-        <div
-          class="w-12 h-12 bg-assurantis-red rounded-xl flex items-center justify-center 
-                 group-hover:scale-105 transition-transform duration-300 shadow-soft"
-        >
-          <span class="text-white font-bold text-xl">A</span>
-        </div>
-        <div class="hidden sm:block">
-          <div class="text-xl font-bold text-assurantis-grayDark">ASSURANTIS</div>
-          <div class="text-xs text-assurantis-gray italic">your best partner</div>
-        </div>
-      </a>
+     <a routerLink="/" class="flex items-center space-x-3 group">
+  <img
+    src="/logoRed.png"
+    alt="Logo Assurantis"
+    class="w-12 h-12 rounded-xl shadow-soft group-hover:scale-105 transition-transform duration-300"
+    loading="lazy"
+    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+  />
+  <div class="hidden sm:block" style="display:none;">
+    <div class="w-12 h-12 bg-assurantis-red rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300 shadow-soft">
+      <span class="text-white font-bold text-xl">A</span>
+    </div>
+  </div>
+  <div class="hidden sm:block">
+    <div class="text-xl font-bold text-assurantis-grayDark">ASSURANTIS</div>
+    <div class="text-xs text-assurantis-gray italic">your best partner</div>
+  </div>
+</a>
 
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex items-center space-x-8">
