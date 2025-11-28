@@ -300,7 +300,7 @@ export class ContactComponent {
             this.isSubmitting = false;
             this.showError = true;
 
-try {
+          try {
             const errorBody = error?.error ? JSON.parse(new TextDecoder().decode(error.error)) : {};
             this.backendErrorMessage = errorBody.errors?.message || 'Erreur inconnue';
           } catch {
