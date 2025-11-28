@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule, MapPin, Phone, Mail, Clock, Send } from 'lucide-angular';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { sendMail } from '../../@core/api/fn/mail-controller/send-mail';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule, ReactiveFormsModule],
+  imports: [CommonModule, LucideAngularModule, ReactiveFormsModule,HttpClientModule],
   template: `
     <section class="bg-gradient-to-br from-assurantis-grayLighter to-white py-20">
       <div class="container-custom text-center">
@@ -180,6 +182,11 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
                   ✓ Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
                 </p>
               </div>
+            <div *ngIf="showError" class="mt-6 p-4 bg-red-50 border border-red-200 rounded-xl animate-fade-in">
+  <p class="text-red-800 font-medium">
+    ✗ {{ backendErrorMessage }}
+  </p>
+</div>
             </div>
           </div>
 
@@ -238,8 +245,10 @@ export class ContactComponent {
   contactForm: FormGroup;
   isSubmitting = false;
   showSuccess = false;
+   showError = false;
+  backendErrorMessage = 'Une erreur est survenue lors de l\'envoi du message.';
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -254,23 +263,54 @@ export class ContactComponent {
     return !!(field && field.invalid && field.touched);
   }
 
-  async onSubmit() {
+   onSubmit() {
     this.contactForm.markAllAsTouched();
 
     if (this.contactForm.valid) {
       this.isSubmitting = true;
-      
-      // Simuler un envoi (pas de backend)
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      this.isSubmitting = false;
-      this.showSuccess = true;
-      this.contactForm.reset();
+      this.showSuccess = false;
+      this.showError = false;
 
-      // Cacher le message de succès après 5 secondes
-      setTimeout(() => {
-        this.showSuccess = false;
-      }, 5000);
+      const formData = this.contactForm.value;
+      
+      const mailRequest = {
+        mailType: 'CONTACT_FORM',
+        appCode: 'ASSURANTIS',
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || '',
+        subject: formData.subject,
+        message: formData.message
+      };
+
+      sendMail(this.http, 'http://localhost:8080', { body: mailRequest })
+        .subscribe({
+          next: () => {
+            this.isSubmitting = false;
+            this.showSuccess = true;
+            this.contactForm.reset();
+
+            // Cacher le message de succès après 5 secondes
+            setTimeout(() => {
+              this.showSuccess = false;
+            }, 5000);
+          },
+          error: (error) => {
+            console.error('Erreur lors de l\'envoi du message:', error);
+            this.isSubmitting = false;
+            this.showError = true;
+
+try {
+            const errorBody = error?.error ? JSON.parse(new TextDecoder().decode(error.error)) : {};
+            this.backendErrorMessage = errorBody.errors?.message || 'Erreur inconnue';
+          } catch {
+            this.backendErrorMessage = 'Erreur inconnue';
+          }
+            setTimeout(() => {
+              this.showError = false;
+            }, 5000);
+          }
+        });
     }
   }
 }
