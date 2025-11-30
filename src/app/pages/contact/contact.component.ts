@@ -280,7 +280,7 @@ export class ContactComponent {
         email: formData.email,
         phone: formData.phone || '',
         subject: formData.subject,
-        message: formData.message
+        message: formData.messagegit
       };
 
       sendMail(this.http, 'http://localhost:8080', { body: mailRequest })
