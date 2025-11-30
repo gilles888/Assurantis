@@ -2,7 +2,7 @@ name: Deploy Assurantis to VPS
 
 on:
   push:
-    branches: [ "main" ]  # ou "master" selon ton repo
+    branches: [ "main" ]  
 
 jobs:
   build-and-deploy:
@@ -23,7 +23,6 @@ jobs:
 
       - name: Build Angular app
         run: npm run build -- --configuration=production
-        # selon ton angular.json, parfois juste: npm run build --configuration=production
 
       - name: Configure SSH
         run: |
