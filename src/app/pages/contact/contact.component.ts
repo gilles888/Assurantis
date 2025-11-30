@@ -87,13 +87,31 @@ import { sendMail } from '../../@core/api/fn/mail-controller/send-mail';
               </div>
             </div>
 
-            <!-- Map Placeholder -->
+            <!-- Map Placeholder 
             <div class="mt-8 rounded-2xl overflow-hidden shadow-soft h-80 bg-assurantis-grayLight">
-              <img src="https://via.placeholder.com/600x400/E5E5E5/4A4A4A?text=Carte+Google+Maps" 
+              <img src="https://www.google.com/maps/place/Av.+Louise+164,+1050+Bruxelles/@50.8285195,4.3605507,17z/data=!3m1!4b1!4m6!3m5!1s0x47c3c4ef451d97f9:0x71a9532df35a2bff!8m2!3d50.8285161!4d4.3631203!16s%2Fg%2F11tsnn9m82?entry=ttu&g_ep=EgoyMDI1MTEyMy4xIKXMDSoASAFQAw%3D%3D" 
                    alt="Localisation ASSURANTIS" 
                    class="w-full h-full object-cover">
-            </div>
+            </div>-->
+            <div class="mt-4 text-lg font-semibold">
+  Localisation ASSURANTIS
+</div>
+
+<div class="mt-2 rounded-2xl overflow-hidden shadow-soft bg-assurantis-grayLight">
+  <!-- Wrapper pour le ratio 16:9 -->
+  <div class="relative w-full pt-[56.25%]">
+    <iframe
+      class="absolute top-0 left-0 w-full h-full border-0"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2520.1427651045005!2d4.360550741409275!3d50.82851946018765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c4ef451d97f9%3A0x71a9532df35a2bff!2sAv.%20Louise%20164%2C%201050%20Bruxelles!5e0!3m2!1sfr!2sbe!4v1764534438451!5m2!1sfr!2sbe"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen
+    ></iframe>
+  </div>
+</div>
+
           </div>
+          
 
           <!-- Contact Form -->
           <div>
