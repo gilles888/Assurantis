@@ -4,6 +4,7 @@ import { LucideAngularModule, MapPin, Phone, Mail, Clock, Send } from 'lucide-an
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { sendMail } from '../../@core/api/fn/mail-controller/send-mail';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-contact',
@@ -301,7 +302,7 @@ export class ContactComponent {
         message: formData.messagegit
       };
 
-      sendMail(this.http, 'http://localhost:8080', { body: mailRequest })
+      sendMail(this.http, environment.apiUrl + '/mail/send', { body: mailRequest })
         .subscribe({
           next: () => {
             this.isSubmitting = false;
