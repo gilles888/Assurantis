@@ -302,7 +302,7 @@ export class ContactComponent {
         message: formData.messagegit
       };
 
-      sendMail(this.http, environment.apiUrl + '/mail/send', { body: mailRequest })
+      sendMail(this.http, environment.apiUrl, { body: mailRequest })
         .subscribe({
           next: () => {
             this.isSubmitting = false;
