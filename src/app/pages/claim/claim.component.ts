@@ -222,7 +222,65 @@ import { LucideAngularModule, AlertCircle, Phone, FileText, Upload } from 'lucid
                   </div>
                 </div>
 
-                <!-- Documents Upload (Mock) -->
+                <!-- Documents justificatifs -->
+<div class="pt-6 border-t border-assurantis-grayLight">
+  <h3 class="text-h4 mb-4">Documents justificatifs</h3>
+
+  <p class="text-sm text-assurantis-gray mb-4">
+    Photos, constat amiable, factures, rapport de police...
+  </p>
+
+  <!-- Upload Zone -->
+  <div
+    class="border-2 border-dashed border-assurantis-grayLight rounded-2xl p-8 text-center hover:border-assurantis-red transition-colors cursor-pointer"
+    (click)="fileInput.click()"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onFileDrop($event)"
+    [class.border-assurantis-red]="isDragOver"
+  >
+    <lucide-icon [img]="UploadIcon" [size]="48" class="text-assurantis-gray mx-auto mb-4"></lucide-icon>
+
+    <p class="text-assurantis-grayDark font-medium mb-2">
+      Cliquez pour ajouter des fichiers
+    </p>
+
+    <p class="text-sm text-assurantis-gray">
+      ou glissez-déposez vos documents ici
+    </p>
+
+    <p class="text-xs text-assurantis-gray mt-3">
+      Formats acceptés : JPG, PNG, PDF (max 10MB par fichier)
+    </p>
+
+    <!-- Hidden file input -->
+    <input
+      #fileInput
+      type="file"
+      multiple
+      accept=".jpg,.jpeg,.png,.pdf"
+      class="hidden"
+      (change)="onFileSelect($event)"
+    />
+  </div>
+
+  <!-- Liste des fichiers -->
+  <div *ngIf="uploadedFiles.length > 0" class="mt-4 p-4 border rounded-xl bg-assurantis-grayLighter">
+    <p class="font-semibold text-sm text-assurantis-grayDark mb-2">
+      Fichiers sélectionnés :
+    </p>
+
+    <ul class="space-y-1 text-xs text-assurantis-gray">
+      <li *ngFor="let file of uploadedFiles; let i = index" class="flex items-center justify-between">
+        <span>• {{ file.name }} ({{ file.size | number }} octets)</span>
+        <button type="button" (click)="removeFile(i)" class="text-assurantis-red hover:underline ml-2 text-xs">
+          Supprimer
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+                <!-- Documents Upload (Mock) 
                 <div class="pt-6 border-t border-assurantis-grayLight">
                   <h3 class="text-h4 mb-4">Documents justificatifs</h3>
                   <p class="text-sm text-assurantis-gray mb-4">
@@ -241,7 +299,8 @@ import { LucideAngularModule, AlertCircle, Phone, FileText, Upload } from 'lucid
                       Formats acceptés : JPG, PNG, PDF (max 10MB par fichier)
                     </p>
                   </div>
-                </div>
+                </div>-->
+                
 
                 <!-- Submit -->
                 <div class="pt-6 border-t border-assurantis-grayLight">
@@ -322,4 +381,55 @@ export class ClaimComponent {
       }, 100);
     }
   }
+  //Add
+
+  isDragOver = false;
+uploadedFiles: File[] = [];
+
+onDragOver(event: DragEvent) {
+  event.preventDefault();
+  this.isDragOver = true;
+}
+
+onDragLeave(event: DragEvent) {
+  event.preventDefault();
+  this.isDragOver = false;
+}
+
+onFileDrop(event: DragEvent) {
+  event.preventDefault();
+  this.isDragOver = false;
+
+  if (!event.dataTransfer?.files) return;
+
+  this.addFiles(event.dataTransfer.files);
+}
+
+onFileSelect(event: any) {
+  const files: FileList = event.target.files;
+  this.addFiles(files);
+}
+
+removeFile(index: number) {
+  this.uploadedFiles.splice(index, 1);
+}
+
+private addFiles(files: FileList) {
+  Array.from(files).forEach(file => {
+    // Vérifier taille < 10MB
+    if (file.size > 10 * 1024 * 1024) {
+      alert(`Le fichier ${file.name} dépasse 10MB`);
+      return;
+    }
+
+    // Vérifier type
+    if (!['image/jpeg', 'image/png', 'application/pdf'].includes(file.type)) {
+      alert(`Le fichier ${file.name} a un format non autorisé`);
+      return;
+    }
+
+    this.uploadedFiles.push(file);
+  });
+}
+
 }

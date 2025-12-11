@@ -5,6 +5,7 @@ import { LucideAngularModule, User, Shield, FileText, CheckCircle, ArrowLeft, Ar
 import { MailRequestDto } from '../../@core/api/models';
 import { sendMail } from '../../@core/api/functions';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { environment } from '../../../environments/environment.prod';
 
 interface QuoteFormData {
   profile: any;
@@ -516,7 +517,7 @@ export class QuoteComponent {
     //this.isSubmitting = false;
    // this.showSuccessModal = true;
 
-      sendMail(this.http, 'http://localhost:8080', { body: mailRequest })
+      sendMail(this.http,  environment.apiUrl, { body: mailRequest })
       .subscribe({
         next: () => {
           this.quoteReference = 'REF-' + Date.now().toString().slice(-8);
