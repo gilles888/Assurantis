@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LucideAngularModule, AlertCircle, Phone, FileText, Upload } from 'lucide-angular';
 import { sendMail } from '../../@core/api/functions';
 import { 
@@ -14,7 +14,7 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-claim',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, LucideAngularModule],
+  imports: [CommonModule, ReactiveFormsModule, LucideAngularModule,HttpClientModule],
   template: `
     <section class="bg-gradient-to-br from-assurantis-grayLighter to-white py-20">
       <div class="container-custom text-center">
