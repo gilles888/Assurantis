@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { LucideAngularModule, AlertCircle, Phone, FileText, Upload } from 'lucide-angular';
 import { sendMail } from '../../@core/api/functions';
-
-import { environment } from '../../../environments/environment.prod';
-import { FileAttachmentDto } from '../../@core/models/file-attachment-dto';
-import { convertFilesToAttachments } from '../../../utils/file-upload.utils';
-
-
+import { 
+  convertFilesToAttachments, 
+  formatFileSize,
+  FileAttachment 
+} from '../../../utils/file-upload.utils'
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-claim',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, LucideAngularModule, HttpClientModule],
+  imports: [CommonModule, ReactiveFormsModule, LucideAngularModule],
   template: `
     <section class="bg-gradient-to-br from-assurantis-grayLighter to-white py-20">
       <div class="container-custom text-center">
@@ -270,7 +270,6 @@ import { convertFilesToAttachments } from '../../../utils/file-upload.utils';
                       Formats acceptés : JPG, PNG, GIF, PDF, DOCX, XLSX
                     </p>
 
-                    <!-- Hidden file input -->
                     <input
                       #fileInput
                       type="file"
@@ -296,7 +295,7 @@ import { convertFilesToAttachments } from '../../../utils/file-upload.utils';
                             {{ file.name }}
                           </p>
                           <p class="text-xs text-assurantis-gray">
-                            {{ formatFileSize(file.size) }}
+                            {{ getFormattedFileSize(file.size) }}
                           </p>
                         </div>
                       </div>
@@ -307,7 +306,6 @@ import { convertFilesToAttachments } from '../../../utils/file-upload.utils';
                     </div>
                   </div>
 
-                  <!-- Erreur fichiers -->
                   <p *ngIf="fileError" class="text-red-500 text-sm mt-2">
                     {{ fileError }}
                   </p>
@@ -426,13 +424,11 @@ export class ClaimComponent {
   private addFiles(files: File[]) {
     this.fileError = '';
 
-    // Vérifier le nombre total de fichiers
     if (this.uploadedFiles.length + files.length > 10) {
       this.fileError = 'Maximum 10 fichiers autorisés';
       return;
     }
 
-    // Ajouter les fichiers
     this.uploadedFiles = [...this.uploadedFiles, ...files];
   }
 
@@ -441,8 +437,8 @@ export class ClaimComponent {
     this.fileError = '';
   }
 
-  formatFileSize(bytes: number): string {
-    return this.formatFileSize(bytes);
+  getFormattedFileSize(bytes: number): string {
+    return formatFileSize(bytes);
   }
 
   async onSubmit() {
@@ -457,7 +453,6 @@ export class ClaimComponent {
       try {
         const formData = this.claimForm.value;
 
-        // Construire le message détaillé
         let message = `DÉCLARATION DE SINISTRE\n\n`;
         message += `Numéro de police : ${formData.policyNumber}\n`;
         message += `Type : ${formData.claimType}\n`;
@@ -471,8 +466,7 @@ export class ClaimComponent {
           message += `\nTémoins :\n${formData.witnesses}`;
         }
 
-        // Convertir les fichiers en attachements
-        const attachments: FileAttachmentDto[] = await convertFilesToAttachments(this.uploadedFiles);
+        const attachments: FileAttachment[] = await convertFilesToAttachments(this.uploadedFiles);
 
         const mailRequest = {
           mailType: 'CLAIM_REQUEST',
@@ -491,13 +485,12 @@ export class ClaimComponent {
           }
         };
 
-        sendMail(this.http, '', { body: mailRequest })
+        sendMail(this.http, environment.apiUrl, { body: mailRequest })
           .subscribe({
             next: (response: any) => {
               this.isSubmitting = false;
               this.showSuccess = true;
               
-              // Récupérer le numéro de référence
               if (response && response.reference) {
                 this.claimReference = response.reference;
               } else {
@@ -507,12 +500,10 @@ export class ClaimComponent {
               this.claimForm.reset();
               this.uploadedFiles = [];
 
-              // Scroll to success message
               setTimeout(() => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }, 100);
 
-              // Masquer après 10 secondes
               setTimeout(() => {
                 this.showSuccess = false;
                 this.claimReference = '';
@@ -537,6 +528,4 @@ export class ClaimComponent {
       }
     }
   }
-
-  
 }
